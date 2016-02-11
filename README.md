@@ -16,8 +16,8 @@ Aprende cómo crear aplicaciones web con mapas de ArcGIS de forma fácil utilizand
 Descargue el proyecto y descomprímalo en su servido local.
 Para más información sobre AngularJS aplicado a la tecnología de ArcGIS consulte: 
 
-	- GitHub esri: https://github.com/esri/angular-esri-map
-	- Ejemplos: http://esri.github.io/angular-esri-map/#/home
+-	GitHub esri: https://github.com/esri/angular-esri-map
+-	Ejemplos: http://esri.github.io/angular-esri-map/#/home
 
 ## Licenciamiento
 
