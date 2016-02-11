@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="esri-map-GeoGeeks">
+	<head>
+	    <title>MeetUp AngularJS</title>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	    <link rel="stylesheet" href="css/estilos.css">
+	    <link rel="stylesheet" href="css/bootstrap.css">
+	    <!-- load Esri CSS -->
+        <link rel="stylesheet" href="http://js.arcgis.com/3.15/esri/css/esri.css">
+        <link rel="stylesheet" href="https://js.arcgis.com/3.15/dijit/themes/tundra/tundra.css">
+
+        <script src="http://js.arcgis.com/3.15"></script>
+        <script src="js/angular.js"></script>
+        <script src="js/angular-esri-map.js"></script>
+
+        <script src="js/modulos/Web_Map.js"></script>
+        <script src="js/modulos/Home_Button.js"></script>
+        <script src="js/modulos/Other_Esri_Modules.js"></script>
+        <script src="js/modulos/Registry_Pattern.js"></script>
+        <script src="js/modulos/Widget_Directions.js"></script>
+
+        <script src="js/jquery-1.11.3.min.js"></script>
+    	<script src="js/bootstrap.js"></script>
+    	<script src="js/script.js"></script>
+	</head>
+
+	<body ng-controller="controladorWebMap" class="tundra">
+
+		<div id="contenedorGeneral" ng-controller="OtherEsriModulesController">
+		    <header class="page-header">
+		    	<ul class="nav nav-pills pull-right ng-scope" role="tablist">
+					<li role="presentation" ng-controller="controladorRuteo">
+			    		<a ng-click="btnRuteo()" class="botonRuteo">Ruteo</a>
+					</li>
+					<li role="presentation" ng-controller="controladorHButton">
+						<a ng-click="btnHomeBtn()" class="botonHome">Home</a>
+					</li>
+					<li role="presentation" ng-controller="RegistryPatternCtrl">
+						<a ng-click="btnClickPuntos()" class="botonPuntos">Puntos X Y</a>
+					</li>
+					<li role="presentation">
+						<a ng-click="onMapLoad()" class="botonDibujar">Dibujar</a>
+						<div ></div>
+					</li>
+					<li role="presentation">
+						<a target="_blank" href="https://github.com/geogeeks">GitHub</a>
+					</li>
+				</ul>
+
+		        <h1 class="text-muted">MeetUp AngularJS</h1>
+		    </header>
+
+		    <div>
+	    		<div class="row ng-scope">
+	    			<div id="ocultos">
+	    				<div id="contRuteo">
+				    		<div id="dir"></div>		    
+		    			</div>
+
+		    			<div id="contHome">
+		    				<div id="HomeButton"></div>			    
+		    			</div>
+
+		    			<div id="contPuntos">
+					    	<p ng-show="!map.point">Click en el mapa para ver los puntos X / Y (Coordenadas planas).</p>
+					    	<p ng-show="map.point">Puntos (Coordenadas planas) X: {{ map.point.x }}, Y: {{ map.point.y }}</p>
+					    </div>
+
+					    <div id="contDibujar">
+					    	<p>
+							    <button ng-click="activateDrawTool('Point')">Point</button>
+							    <button ng-click="activateDrawTool('Multipoint')">Multipoint</button>
+							    <button ng-click="activateDrawTool('Line')">Line</button>
+							    <button ng-click="activateDrawTool('Polyline')">Polyline</button>
+							    <button ng-click="activateDrawTool('FreehandPolyline')">Freehand Polyline</button>
+							</p>
+							<p>
+							    <button ng-click="activateDrawTool('Triangle')">Triangle</button>
+							    <button ng-click="activateDrawTool('Extent')">Rectangle</button>
+							    <button ng-click="activateDrawTool('Circle')">Circle</button>
+							    <button ng-click="activateDrawTool('Ellipse')">Ellipse</button>
+							    <button ng-click="activateDrawTool('Polygon')">Polygon</button>
+							    <button ng-click="activateDrawTool('FreehandPolygon')">Freehand Polygon</button>
+							</p>
+					    </div>	
+	    			</div>
+
+	    			<div class="col-xs-8 col-sm-9">
+	    				<esri-map id="map" register-as="myMap" webmap-id="2e6bf00cada3412abb5dc707c8d03ffb" center="map.center" zoom="map.zoom" item-info="itemInfo" load="webMapLoaded">
+			    			<div esri-legend target-id="legend"></div>
+			    		</esri-map>
+	    			</div>
+	    			<div class="col-xs-4 col-sm-3" style="overflow: auto; max-height: 400px;">
+				        <div id="legend" widgetid="legend" style="position: relative;"></div>
+				    </div>
+	    		</div>
+
+		    	<strong>Datos de navegación</strong>
+		    	<p>Longitud: {{map.center.lng | number:3}} / Latitud: {{map.center.lat | number:3}} / Zoom: {{map.zoom}}</p>
+		    	
+			    Lng:<input type="number" step="0.1" ng-model="map.center.lng" />
+			    Lat:<input type="number" step="0.1" ng-model="map.center.lat" />
+			    Zoom: <select ng-model="map.zoom" ng-options="level for level in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]"></select>
+		    </div>
+		</div>
+
+	    <footer class="footer col-xs-12">
+	    	<p>
+	    		<a target="_blank" href="http://desarrolladores.esri.co/semillero.html"><img src="images/favicon.ico">GeoGeeks</a>
+	    		<a target="_blank" href="http://facebook.com/geogeeksco/"><img src="images/facebook.png">Facebook</a>
+	    		<a target="_blank" href="https://twitter.com/geo_geeks/"><img src="images/twitter.png">Twitter</a>
+    		</p>
+	    </footer>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+body{
+	padding: 20px 50px;
+}
+header a{
+    cursor: pointer;
+}
+
+#map{
+	height: 400px;
+    width: 100%;
+}
+
+#ocultos{
+    padding: 20px;
+}
+
+.simpleDirections{
+	width: 50% !important;
+}
+
+.simpleDirections .esriResultsContainer {
+    background: #fff;
+    height: 250px !important;
+    width: 40%;
+    zoom: 1;
+    position: absolute;
+    top: 150px;
+    right: 58px;
+    overflow-y: scroll;
+}
+
+.footer {
+    background-color: inherit;
+    border-top: 1px solid #e5e5e5;
+    color: #777;
+    margin-top: 19px;
+    padding-top: 19px;
+    position: relative;
+}
+.footer a{
+    color: #777;
+    text-decoration: none;
+}
